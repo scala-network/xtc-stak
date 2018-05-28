@@ -62,6 +62,15 @@ void help()
 	using namespace std;
 	using namespace xmrstak;
 
+	printf(R"EOF(
+__  _______ _         ____ _____  _    _  __
+\ \/ |_   _| |       / ___|_   _|/ \  | |/ /
+ \  /  | | | |   ____\___ \ | | / _ \ | ' /
+ /  \  | | | |__|____|___) || |/ ___ \| . \
+/_/\_\ |_| |_____|   |____/ |_/_/   \_|_|\_\
+
+)EOF");
+
 	cout<<"Usage: "<<params::inst().binaryName<<" [OPTION]..."<<endl;
 	cout<<" "<<endl;
 	cout<<"  -h, --help                 show this help"<<endl;
@@ -114,7 +123,7 @@ void help()
 	jconf::GetAlgoList(algos);
 	cout<< "Supported coin options: " << endl << algos << endl;
 	cout<< "Version: " << get_version_str_short() << endl;
-	cout<<"Brought to by fireice_uk and psychocrypt under GPLv3."<<endl;
+	cout<<"Brought to by fireice_uk and psychocrypt under GPLv3, additional work done by the Stellite Project"<<endl;
 }
 
 bool read_yes_no(const char* str)
@@ -768,10 +777,19 @@ int main(int argc, char *argv[])
 #endif
 	}
 
+	printf(R"EOF(
+__  _______ _         ____ _____  _    _  __
+\ \/ |_   _| |       / ___|_   _|/ \  | |/ /
+ \  /  | | | |   ____\___ \ | | / _ \ | ' /
+ /  \  | | | |__|____|___) || |/ ___ \| . \
+/_/\_\ |_| |_____|   |____/ |_/_/   \_|_|\_\
+
+	)EOF");
+
 	printer::inst()->print_str("-------------------------------------------------------------------\n");
 	printer::inst()->print_str(get_version_str_short().c_str());
 	printer::inst()->print_str("\n\n");
-	printer::inst()->print_str("Brought to you by fireice_uk and psychocrypt under GPLv3.\n");
+	printer::inst()->print_str("Brought to you by fireice_uk and psychocrypt under GPLv3, additional work done by the Stellite Project\n");
 	printer::inst()->print_str("Based on CPU mining code by wolf9466 (heavily optimized by fireice_uk).\n");
 #ifndef CONF_NO_CUDA
 	printer::inst()->print_str("Based on NVIDIA mining code by KlausT and psychocrypt.\n");

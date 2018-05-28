@@ -1,6 +1,6 @@
 #include "version.hpp"
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives.
 #define GIT_ARCHIVE 1
 #if defined(GIT_ARCHIVE) && !defined(GIT_COMMIT_HASH)
 #define GIT_COMMIT_HASH 187ddb0c
@@ -18,7 +18,7 @@
 #define BACKEND_TYPE unknown
 #endif
 
-#define XMR_STAK_NAME "xmr-stak"
+#define XMR_STAK_NAME "xtl-stak"
 #define XMR_STAK_VERSION "2.4.3"
 
 #if defined(_WIN32)
