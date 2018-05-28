@@ -1,6 +1,6 @@
 # XTL-Stak - Stellite All-in-One Mining Software
 
-**XTL-Stak is ready for the PoW of Stellite V4**
+**XTL-Stak is ready for the PoW change of Stellite V4**
 
 XTL-Stak is a universal Stratum pool miner. This miner supports CPUs, AMD and NVIDIA GPUs and can be used to mine the crypto currency Stellite, Monero, Aeon and others.
 
