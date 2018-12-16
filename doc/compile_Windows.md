@@ -30,9 +30,16 @@
     - CUDA/Runtime
     - Driver components
 
-### AMD APP SDK 3.0 (only needed for AMD GPUs)
+### AMD DRIVER/OCL-SDK (only needed for AMD GPUs)
 
-- Download and install the latest version from http://developer.amd.com/amd-accelerated-parallel-processing-app-sdk/
+- Download & install the AMD driver: https://www.amd.com/en/support
+
+**ATTENTION** Many windows driver 18.5+ creating invalid shares.
+If you have an issue with `invalid shares` please downgrade your driver.
+
+- Download and install the latest version of the OCL-SDK from https://github.com/GPUOpen-LibrariesAndSDKs/OCL-SDK/releases 
+
+Do not follow old information that you need the AMD APP SDK. AMD has removed the APP SDK and is now shipping the OCL-SDK_light.
 
 ### Dependencies OpenSSL/Hwloc and Microhttpd
 - For CUDA 8*:
@@ -109,4 +116,4 @@
 
   copy C:\xmr-stak-dep\openssl\bin\* .
   ```
-- Miner is by default compiled for NVIDIA GPUs (if CUDA is installed), AMD GPUs (if the AMD APP SDK is installed) and CPUs.
+- Miner is by default compiled for NVIDIA GPUs (if CUDA is installed), AMD GPUs (if the AMD OCL-SDK_light is installed) and CPUs.

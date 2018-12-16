@@ -755,13 +755,14 @@ int main(int argc, char *argv[])
 
 	if(strlen(jconf::inst()->GetOutputFile()) != 0)
 		printer::inst()->open_logfile(jconf::inst()->GetOutputFile());
-
+/*
 	if (!BackendConnector::self_test())
 	{
+		printer::inst()->print_msg(L0, "Self test not passed!");
 		win_exit();
 		return 1;
 	}
-
+*/
 	if(jconf::inst()->GetHttpdPort() != uint16_t(params::httpd_port_disabled))
 	{
 #ifdef CONF_NO_HTTPD
@@ -800,6 +801,7 @@ __  _______ _         ____ _____  _    _  __
 	char buffer[64];
 	snprintf(buffer, sizeof(buffer), "\nConfigurable dev donation level is set to %.1f%%\n\n", fDevDonationLevel * 100.0);
 	printer::inst()->print_str(buffer);
+	printer::inst()->print_str("-------------------------------------------------------------------\n");
 	printer::inst()->print_str("You can use following keys to display reports:\n");
 	printer::inst()->print_str("'h' - hashrate\n");
 	printer::inst()->print_str("'r' - results\n");

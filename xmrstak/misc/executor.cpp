@@ -422,7 +422,7 @@ void executor::on_miner_result(size_t pool_id, job_result& oResult)
 		//Ignore errors silently
 		if(pool->is_running() && pool->is_logged_in())
 			pool->cmd_submit(oResult.sJobID, oResult.iNonce, oResult.bResult, backend_name,
-			backend_hashcount, total_hashcount, jconf::inst()->GetCurrentCoinSelection().GetDescription(0).GetMiningAlgo()
+			backend_hashcount, total_hashcount, oResult.algorithm
 		);
 		return;
 	}
@@ -435,7 +435,7 @@ void executor::on_miner_result(size_t pool_id, job_result& oResult)
 
 	size_t t_start = get_timestamp_ms();
 	bool bResult = pool->cmd_submit(oResult.sJobID, oResult.iNonce, oResult.bResult,
-		backend_name, backend_hashcount, total_hashcount, jconf::inst()->GetCurrentCoinSelection().GetDescription(1).GetMiningAlgo()
+		backend_name, backend_hashcount, total_hashcount, oResult.algorithm
 	);
 	size_t t_len = get_timestamp_ms() - t_start;
 
@@ -554,23 +554,29 @@ void executor::ex_main()
 
 	switch(jconf::inst()->GetCurrentCoinSelection().GetDescription(0).GetMiningAlgo())
 	{
-
 	case cryptonight_heavy:
 		if(dev_tls)
 			pools.emplace_front(0, "donate.xmr-stak.net:8888", "", "", "", 0.0, true, true, "", true);
 		else
 			pools.emplace_front(0, "donate.xmr-stak.net:5555", "", "", "", 0.0, true, false, "", true);
 		break;
-
+	case cryptonight_monero_v8:
+        if(dev_tls)
+            pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, true, "", false);
+        else
+            pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
 	case cryptonight_monero:
 		if(dev_tls)
 			pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, true, "", false);
 		else
 			pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
 		break;
-        case cryptonight_stellite:
-			pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
+	case cryptonight_stellite:
+		pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
 		break;
+    case cryptonight_stellite_v8:
+        pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
+        break;
 	case cryptonight_ipbc:
 	case cryptonight_aeon:
 	case cryptonight_lite:
@@ -631,8 +637,12 @@ void executor::ex_main()
 			break;
 
 		case EV_GPU_RES_ERROR:
-			log_result_error(std::string(ev.oGpuError.error_str + std::string(" GPU ID ") + std::to_string(ev.oGpuError.idx)));
+		{
+			std::string err_msg = std::string(ev.oGpuError.error_str) + " GPU ID " + std::to_string(ev.oGpuError.idx);
+			printer::inst()->print_msg(L0, err_msg.c_str());
+			log_result_error(std::move(err_msg));
 			break;
+		}
 
 		case EV_PERF_TICK:
 			for (i = 0; i < pvThreads->size(); i++)
@@ -1259,7 +1269,7 @@ void executor::http_json_report(std::string& out)
 		if(i != 0) cn_error.append(1, ',');
 
 		snprintf(buffer, sizeof(buffer), sJsonApiConnectionError,
-			int_port(duration_cast<seconds>(vMineResults[i].time.time_since_epoch()).count()),
+			int_port(duration_cast<seconds>(vSocketLog[i].time.time_since_epoch()).count()),
 			vSocketLog[i].msg.c_str());
 		cn_error.append(buffer);
 	}

@@ -21,7 +21,7 @@ extern const char sHtmlCssFile [] =
 	"}"
 
 	"a:hover {"
-		"color: #9012F0;"
+		"color: rgb(255, 153, 0);"
 	"}"
 
 	"a:active {"
@@ -34,7 +34,8 @@ extern const char sHtmlCssFile [] =
 	"}"
 
 	".header {"
-		"color: #9012F0;"
+		"background-color: rgb(30, 30, 30);"
+		"color: white;"
 		"padding: 10px;"
 		"font-weight: bold;"
 		"margin: 0px;"
@@ -77,7 +78,7 @@ extern const char sHtmlCssFile [] =
 	"}"
 
 	"h4 {"
-		"background-color: #540C87;"
+		"background-color: rgb(0, 130, 130);"
 		"color: white;"
 		"padding: 10px;"
 		"margin: 10px 0px;"
@@ -112,7 +113,7 @@ extern const char sHtmlCssFile [] =
 
 size_t sHtmlCssSize = sizeof(sHtmlCssFile) - 1;
 
-extern const char sHttpAuthRelam[] = "XTL-Stak-Miner";
+extern const char sHttpAuthRealm[] = "XTL-Stak-Miner";
 extern const char sHttpAuthOpaque[] = "6c071f0df539e234cadbcd79164af7a594e23ab42bccb834df796aead6ce96e4";
 
 extern const char sHtmlAccessDenied[] =
@@ -131,17 +132,17 @@ extern const char sHtmlCommonHeader [] =
 	"<body>"
 	"<div class='all'>"
 	"<div class='version'>%s</div>"
-	"<div class='header'>XTL-Stak Stellite Miner</div>"
+	"<div class='header'><span style='color: rgb(255, 160, 0)'>XTL</span>-Stak Monero Miner</div>"
 
 	"<div class='flex-container'>"
 		"<div class='links flex-item'>"
-			"<a href='/h'><div><span class='letter'>H</span>ashrate</div></a>"
+			"<a href='h'><div><span class='letter'>H</span>ashrate</div></a>"
 		"</div>"
 		"<div class='links flex-item'>"
-			"<a href='/r'><div><span class='letter'>R</span>esults</div></a>"
+			"<a href='r'><div><span class='letter'>R</span>esults</div></a>"
 		"</div>"
 		"<div class='links flex-item'>"
-			"<a href='/c'><div><span class='letter'>C</span>onnection</div></a>"
+			"<a href='c'><div><span class='letter'>C</span>onnection</div></a>"
 		"</div>"
 	"</div>"
 	"<h4>%s</h4>";
@@ -244,3 +245,4 @@ extern const char sJsonApiFormat [] =
 		"\"error_log\":[%s]"
 	"}"
 "}";
+
