@@ -708,8 +708,8 @@ extern "C" int cuda_get_deviceinfo(nvid_ctx* ctx)
 
 		// check if cryptonight_monero_v8 is selected for the user pool
 		bool useCryptonight_v8 =
-			::jconf::inst()->GetCurrentCoinSelection().GetDescription(1).GetMiningAlgo() == cryptonight_monero_v8 ||
-			::jconf::inst()->GetCurrentCoinSelection().GetDescription(1).GetMiningAlgoRoot() == cryptonight_monero_v8;
+			::jconf::inst()->GetCurrentCoinSelection().GetDescription(1).GetMiningAlgo() == (cryptonight_monero_v8 || cryptonight_stellite_v8) ||
+			::jconf::inst()->GetCurrentCoinSelection().GetDescription(1).GetMiningAlgoRoot() == (cryptonight_monero_v8 || cryptonight_stellite_v8);
 
 		// overwrite default config if cryptonight_monero_v8 is mined and GPU has at least compute capability 5.0
 		if(useCryptonight_v8 && gpuArch >= 50)
