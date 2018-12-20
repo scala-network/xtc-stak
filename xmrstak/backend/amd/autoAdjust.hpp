@@ -149,7 +149,7 @@ private:
 				ctx.stridedIndex = 0;
 
 			// use chunked (4x16byte) scratchpad for all backends. Default `mem_chunk` is `2`
-			if(cryptonight_monero_v8 || cryptonight_stellite_v8)
+			if(useCryptonight_v8)
 				ctx.stridedIndex = 2;
 			else if(useCryptonight_heavy)
 				ctx.stridedIndex = 3;
