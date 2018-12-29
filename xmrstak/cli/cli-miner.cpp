@@ -62,15 +62,6 @@ void help()
 	using namespace std;
 	using namespace xmrstak;
 
-	printf(R"EOF(
-__  _______ _         ____ _____  _    _  __
-\ \/ |_   _| |       / ___|_   _|/ \  | |/ /
- \  /  | | | |   ____\___ \ | | / _ \ | ' /
- /  \  | | | |__|____|___) || |/ ___ \| . \
-/_/\_\ |_| |_____|   |____/ |_/_/   \_|_|\_\
-
-)EOF");
-
 	cout<<"Usage: "<<params::inst().binaryName<<" [OPTION]..."<<endl;
 	cout<<" "<<endl;
 	cout<<"  -h, --help                 show this help"<<endl;
@@ -123,7 +114,7 @@ __  _______ _         ____ _____  _    _  __
 	jconf::GetAlgoList(algos);
 	cout<< "Supported coin options: " << endl << algos << endl;
 	cout<< "Version: " << get_version_str_short() << endl;
-	cout<<"Brought to by fireice_uk and psychocrypt under GPLv3, additional work done by the Stellite Project"<<endl;
+	cout<<"Brought to by fireice_uk and psychocrypt under GPLv3."<<endl;
 }
 
 bool read_yes_no(const char* str)
@@ -214,17 +205,8 @@ void do_guided_pool_config()
 	auto& currency = params::inst().currency;
 	if(currency.empty() || !jconf::IsOnAlgoList(currency))
 	{
-		prompt_once(prompted);
-
-		std::string tmp;
-		while(tmp.empty() || !jconf::IsOnAlgoList(tmp))
-		{
-			std::string list;
-			jconf::GetAlgoList(list);
-			std::cout << "- Please enter the currency that you want to mine: "<<std::endl;
-			std::cout << list << std::endl;
-			std::cin >> tmp;
-		}
+		//prompt_once(prompted);
+		std::string tmp = "stellite";
 		currency = tmp;
 	}
 
@@ -755,6 +737,7 @@ int main(int argc, char *argv[])
 
 	if(strlen(jconf::inst()->GetOutputFile()) != 0)
 		printer::inst()->open_logfile(jconf::inst()->GetOutputFile());
+
 /*
 	if (!BackendConnector::self_test())
 	{
@@ -778,19 +761,10 @@ int main(int argc, char *argv[])
 #endif
 	}
 
-	printf(R"EOF(
-__  _______ _         ____ _____  _    _  __
-\ \/ |_   _| |       / ___|_   _|/ \  | |/ /
- \  /  | | | |   ____\___ \ | | / _ \ | ' /
- /  \  | | | |__|____|___) || |/ ___ \| . \
-/_/\_\ |_| |_____|   |____/ |_/_/   \_|_|\_\
-
-	)EOF");
-
 	printer::inst()->print_str("-------------------------------------------------------------------\n");
 	printer::inst()->print_str(get_version_str_short().c_str());
 	printer::inst()->print_str("\n\n");
-	printer::inst()->print_str("Brought to you by fireice_uk and psychocrypt under GPLv3, additional work done by the Stellite Project\n");
+	printer::inst()->print_str("Brought to you by fireice_uk and psychocrypt under GPLv3.\n");
 	printer::inst()->print_str("Based on CPU mining code by wolf9466 (heavily optimized by fireice_uk).\n");
 #ifndef CONF_NO_CUDA
 	printer::inst()->print_str("Based on NVIDIA mining code by KlausT and psychocrypt.\n");
@@ -806,6 +780,13 @@ __  _______ _         ____ _____  _    _  __
 	printer::inst()->print_str("'h' - hashrate\n");
 	printer::inst()->print_str("'r' - results\n");
 	printer::inst()->print_str("'c' - connection\n");
+	printer::inst()->print_str("-------------------------------------------------------------------\n");
+
+printer::inst()->print_str("____ ___ ____ _    _    _ ___ ____ \n");
+printer::inst()->print_str("[__   |  |___ |    |    |  |  |___ \n");
+printer::inst()->print_str("___]  |  |___ |___ |___ |  |  |___ \n");
+                               
+
 	printer::inst()->print_str("-------------------------------------------------------------------\n");
 	printer::inst()->print_msg(L0, "Mining coin: %s", jconf::inst()->GetMiningCoin().c_str());
 

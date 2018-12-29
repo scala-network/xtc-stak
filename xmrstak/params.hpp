@@ -58,7 +58,7 @@ struct params
 	int benchmark_work_sec = 60;
 
 	params() :
-		binaryName("xtl-stak"),
+		binaryName("xmr-stak"),
 		executablePrefix(""),
 		useAMD(true),
 		AMDCache(true),

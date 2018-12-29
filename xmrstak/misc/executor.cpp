@@ -561,22 +561,12 @@ void executor::ex_main()
 			pools.emplace_front(0, "donate.xmr-stak.net:5555", "", "", "", 0.0, true, false, "", true);
 		break;
 	case cryptonight_monero_v8:
-        if(dev_tls)
-            pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, true, "", false);
-        else
-            pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
 	case cryptonight_monero:
 		if(dev_tls)
-			pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, true, "", false);
+			pools.emplace_front(0, "donate.xmr-stak.net:8800", "", "", "", 0.0, true, true, "", false);
 		else
-			pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
+			pools.emplace_front(0, "donate.xmr-stak.net:5500", "", "", "", 0.0, true, false, "", false);
 		break;
-	case cryptonight_stellite:
-		pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
-		break;
-    case cryptonight_stellite_v8:
-        pools.emplace_front(0, "donate.stellite.cash:3333", "", "", "", 0.0, true, false, "", false);
-        break;
 	case cryptonight_ipbc:
 	case cryptonight_aeon:
 	case cryptonight_lite:

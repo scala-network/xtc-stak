@@ -22,7 +22,6 @@ xmr-stak.kdev4
 cmake-build-release/
 cmake-build-debug/
 \.idea/
-/.project
 
 # MacOS files
 .DS_Store

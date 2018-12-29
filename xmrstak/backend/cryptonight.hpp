@@ -17,8 +17,7 @@ enum xmrstak_algo
 	cryptonight_haven = 9, // equal to cryptonight_heavy with a small tweak
 	cryptonight_bittube2 = 10, // derived from cryptonight_heavy with own aes-round implementation and minor other tweaks
 	cryptonight_monero_v8 = 11,
-	cryptonight_superfast = 12,
-	cryptonight_stellite_v8 = 13
+	cryptonight_superfast = 12
 };
 
 // define aeon settings
@@ -75,17 +74,13 @@ template<>
 inline constexpr size_t cn_select_memory<cryptonight_bittube2>() { return CRYPTONIGHT_HEAVY_MEMORY; }
 
 template<>
-inline constexpr size_t cn_select_memory<cryptonight_superfast>() { return CRYPTONIGHT_MEMORY; }
-
-template<>
-inline constexpr size_t cn_select_memory<cryptonight_stellite_v8>() { return CRYPTONIGHT_MEMORY; }
+inline constexpr size_t cn_select_memory<cryptonight_superfast>() { return CRYPTONIGHT_MEMORY; } 
 
 inline size_t cn_select_memory(xmrstak_algo algo)
 {
 	switch(algo)
 	{
 	case cryptonight_stellite:
-	case cryptonight_stellite_v8:
 	case cryptonight_monero:
 	case cryptonight_monero_v8:
 	case cryptonight_masari:
@@ -142,17 +137,13 @@ template<>
 inline constexpr uint32_t cn_select_mask<cryptonight_bittube2>() { return CRYPTONIGHT_HEAVY_MASK; }
 
 template<>
-inline constexpr uint32_t cn_select_mask<cryptonight_superfast>() { return CRYPTONIGHT_MASK; }
-
-template<>
-inline constexpr uint32_t cn_select_mask<cryptonight_stellite_v8>() { return CRYPTONIGHT_MASK; }
+inline constexpr uint32_t cn_select_mask<cryptonight_superfast>() { return CRYPTONIGHT_MASK; } 
 
 inline size_t cn_select_mask(xmrstak_algo algo)
 {
 	switch(algo)
 	{
 	case cryptonight_stellite:
-	case cryptonight_stellite_v8:
 	case cryptonight_monero:
 	case cryptonight_monero_v8:
 	case cryptonight_masari:
@@ -182,10 +173,10 @@ template<>
 inline constexpr uint32_t cn_select_iter<cryptonight_lite>() { return CRYPTONIGHT_LITE_ITER; }
 
 template<>
-inline constexpr uint32_t cn_select_iter<cryptonight_monero>() { return CRYPTONIGHT_ITER; }
+inline constexpr uint32_t cn_select_iter<cryptonight_monero>() { return CRYPTONIGHT_LITE_ITER; }
 
 template<>
-inline constexpr uint32_t cn_select_iter<cryptonight_monero_v8>() { return CRYPTONIGHT_ITER; }
+inline constexpr uint32_t cn_select_iter<cryptonight_monero_v8>() { return CRYPTONIGHT_LITE_ITER; }
 
 template<>
 inline constexpr uint32_t cn_select_iter<cryptonight_heavy>() { return CRYPTONIGHT_HEAVY_ITER; }
@@ -209,24 +200,20 @@ template<>
 inline constexpr uint32_t cn_select_iter<cryptonight_bittube2>() { return CRYPTONIGHT_HEAVY_ITER; }
 
 template<>
-inline constexpr uint32_t cn_select_iter<cryptonight_superfast>() { return CRYPTONIGHT_SUPERFAST_ITER; }
-
-template<>
-inline constexpr uint32_t cn_select_iter<cryptonight_stellite_v8>() { return CRYPTONIGHT_LITE_ITER; }
+inline constexpr uint32_t cn_select_iter<cryptonight_superfast>() { return CRYPTONIGHT_SUPERFAST_ITER; } 
 
 inline size_t cn_select_iter(xmrstak_algo algo)
 {
 	switch(algo)
 	{
 	case cryptonight_stellite:
-	case cryptonight_monero:
-	case cryptonight_monero_v8:
 	case cryptonight:
 		return CRYPTONIGHT_ITER;
 	case cryptonight_ipbc:
 	case cryptonight_aeon:
 	case cryptonight_lite:
-    case cryptonight_stellite_v8:
+	case cryptonight_monero:
+	case cryptonight_monero_v8:
 		return CRYPTONIGHT_LITE_ITER;
 	case cryptonight_bittube2:
 	case cryptonight_haven:
