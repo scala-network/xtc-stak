@@ -782,9 +782,9 @@ int main(int argc, char *argv[])
 	printer::inst()->print_str("'c' - connection\n");
 	printer::inst()->print_str("-------------------------------------------------------------------\n");
 
-printer::inst()->print_str("____ ___ ____ _    _    _ ___ ____ \n");
-printer::inst()->print_str("[__   |  |___ |    |    |  |  |___ \n");
-printer::inst()->print_str("___]  |  |___ |___ |___ |  |  |___ \n");
+	printer::inst()->print_str("____ ___ ____ _    _    _ ___ ____ \n");
+	printer::inst()->print_str("[__   |  |___ |    |    |  |  |___ \n");
+	printer::inst()->print_str("___]  |  |___ |___ |___ |  |  |___ \n");
                                
 
 	printer::inst()->print_str("-------------------------------------------------------------------\n");
