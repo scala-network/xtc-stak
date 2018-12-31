@@ -5,12 +5,12 @@ image: Visual Studio 2015
 platform: x64
 
 # clone directory
-clone_folder: c:\xmr-stak
+clone_folder: c:\xtl-stak
 
 install:
-  - mkdir c:\xmr-stak-dep
-  - curl -sL https://github.com/fireice-uk/xmr-stak-dep/releases/download/v1/xmr-stak-dep.zip -o xmr-stak-dep.zip
-  - 7z x xmr-stak-dep.zip -o"c:\xmr-stak-dep" -y > nul
+  - mkdir c:\xtl-stak-dep
+  - curl -sL https://github.com/stellitecoin/xtl-stak-dep/releases/download/v1/xtl-stak-dep.zip -o xtl-stak-dep.zip
+  - 7z x xtl-stak-dep.zip -o"c:\xtl-stak-dep" -y > nul
   - appveyor DownloadFile  https://developer.nvidia.com/compute/cuda/8.0/prod/local_installers/cuda_8.0.44_windows-exe -FileName cuda_8.0.44_windows.exe
   - cuda_8.0.44_windows.exe -s compiler_8.0 cudart_8.0
   - set PATH=%ProgramFiles%\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;%ProgramFiles%\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;%PATH%
@@ -18,16 +18,16 @@ install:
 
 build_script:
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
-  - cd c:\xmr-stak
+  - cd c:\xtl-stak
   - mkdir build
   - cd build
-  - set CMAKE_PREFIX_PATH=C:\xmr-stak-dep\hwloc;C:\xmr-stak-dep\libmicrohttpd;C:\xmr-stak-dep\openssl;
+  - set CMAKE_PREFIX_PATH=C:\xtl-stak-dep\hwloc;C:\xtl-stak-dep\libmicrohttpd;C:\xtl-stak-dep\openssl;
   - cmake -G "Visual Studio 14 2015 Win64" -T v140,host=x64 .. -DCUDA_ARCH=30
   - cmake --build . --config Release --target install
 
 test_script:
-  - cd c:\xmr-stak\build\bin\Release
+  - cd c:\xtl-stak\build\bin\Release
   - dir
-  - copy C:\xmr-stak-dep\openssl\bin\* .
+  - copy C:\xtl-stak-dep\openssl\bin\* .
   - set XMRSTAK_NOWAIT=1
-  - xmr-stak.exe --help --noUAC
+  - xtl-stak.exe --help --noUAC

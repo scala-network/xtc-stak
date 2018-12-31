@@ -1,4 +1,4 @@
-# Compile **xmr-stak** for FreeBSD
+# Compile **xtl-stak** for FreeBSD
 
 ## Install Dependencies
 
@@ -10,10 +10,10 @@ From the root shell, run the following commands:
 
 Type 'y' and hit enter to proceed with installing the packages.
 
-    git clone https://github.com/fireice-uk/xmr-stak.git
-    mkdir xmr-stak/build
-    cd xmr-stak/build
+    git clone https://github.com/stellitecoin/xtl-stak.git
+    mkdir xtl-stak/build
+    cd xtl-stak/build
     cmake ..
     make install
 
-Now you have the binary located at "bin/xmr-stak" and the needed shared libraries.
+Now you have the binary located at "bin/xtl-stak" and the needed shared libraries.

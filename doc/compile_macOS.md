@@ -1,8 +1,8 @@
-# Compile **xmr-stak** for macOS
+# Compile **xtl-stak** for macOS
 
 ## Dependencies
 
-Assuming you already have [Homebrew](https://brew.sh) installed, the installation of dependencies is pretty straightforward and will generate the `xmr-stak` binary in the `bin/` directory.
+Assuming you already have [Homebrew](https://brew.sh) installed, the installation of dependencies is pretty straightforward and will generate the `xtl-stak` binary in the `bin/` directory.
 
 ### For NVIDIA GPUs
 

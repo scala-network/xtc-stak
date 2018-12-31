@@ -1,11 +1,11 @@
-# Compile **xmr-stak** for Windows
+# Compile **xtl-stak** for Windows
 
 ## Install Dependencies
 
 ### Preparation
 
 - Open a command line (Windows key + r) and enter `cmd`
-- Execute `mkdir C:\xmr-stak-dep`
+- Execute `mkdir C:\xtl-stak-dep`
 
 ### Visual Studio Community 2017
 
@@ -43,24 +43,24 @@ Do not follow old information that you need the AMD APP SDK. AMD has removed the
 
 ### Dependencies OpenSSL/Hwloc and Microhttpd
 - For CUDA 8*:
-  - Download version 1 of the precompiled binary from https://github.com/fireice-uk/xmr-stak-dep/releases/download/v1/xmr-stak-dep.zip
+  - Download version 1 of the precompiled binary from https://github.com/stellitecoin/xtl-stak-dep/releases/download/v1/xtl-stak-dep.zip
   - Version 1 of the pre-compiled dependencies is not compatible with Visual Studio Toolset v141
 - For CUDA 9* **and/or** AMD GPUs, CPU:
-  - Download version 2 of the precompiled binary from https://github.com/fireice-uk/xmr-stak-dep/releases/download/v2/xmr-stak-dep.zip
+  - Download version 2 of the precompiled binary from https://github.com/stellitecoin/xtl-stak-dep/releases/download/v2/xtl-stak-dep.zip
   - Version 2 of the pre-compiled dependencies is not compatible with Visual Studio Toolset v140
-- Extract archive to `C:\xmr-stak-dep`
+- Extract archive to `C:\xtl-stak-dep`
 
 ### Validate the Dependency Folder
 
 - Open a command line (Windows key + r) and enter `cmd`
 - Execute
    ```
-   cd c:\xmr-stak-dep
+   cd c:\xtl-stak-dep
    tree .
    ```
 - You should see something like this:
   ```
-    C:\xmr-stak-dep>tree .
+    C:\xtl-stak-dep>tree .
     Folder PATH listing for volume Windows
     Volume serial number is XX02-XXXX
     C:\XMR-STAK-DEP
@@ -83,10 +83,10 @@ Do not follow old information that you need the AMD APP SDK. AMD has removed the
 
 ## Compile
 
-- Download xmr-stak [Source Code.zip](https://github.com/fireice-uk/xmr-stak/releases) and save to a location in your home folder (C:\Users\USERNAME\)
-- Extract `Source Code.zip` (e.g. to `C:\Users\USERNAME\xmr-stak-<version>`)
+- Download xtl-stak [Source Code.zip](https://github.com/stellitecoin/xtl-stak/releases) and save to a location in your home folder (C:\Users\USERNAME\)
+- Extract `Source Code.zip` (e.g. to `C:\Users\USERNAME\xtl-stak-<version>`)
 - Open a command line (Windows key + r) and enter `cmd`
-- Go to extracted source code directory (e.g. `cd C:\Users\USERNAME\xmr-stak-<version>`)
+- Go to extracted source code directory (e.g. `cd C:\Users\USERNAME\xtl-stak-<version>`)
 - Execute the following commands (NOTE: path to Visual Studio Community 2017 can be different)
   ```
   # Execute next line only if compiling for Cuda 9.x and using Visual Studio 2017 >= 15.5 (released 12/04/17)
@@ -94,18 +94,18 @@ Do not follow old information that you need the AMD APP SDK. AMD has removed the
 
   "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsMSBuildCmd.bat"
   ```
-- Sometimes Windows will change the directory to `C:\Users\USERNAME\source\` instead of `C:\Users\USERNAME\xmr-stak-<version>\`. If that's the case execute `cd C:\Users\USERNAME\xmr-stak-<version>` followed by:
+- Sometimes Windows will change the directory to `C:\Users\USERNAME\source\` instead of `C:\Users\USERNAME\xtl-stak-<version>\`. If that's the case execute `cd C:\Users\USERNAME\xtl-stak-<version>` followed by:
   ```
   mkdir build
 
   cd build
 
-  set CMAKE_PREFIX_PATH=C:\xmr-stak-dep\hwloc;C:\xmr-stak-dep\libmicrohttpd;C:\xmr-stak-dep\openssl
+  set CMAKE_PREFIX_PATH=C:\xtl-stak-dep\hwloc;C:\xtl-stak-dep\libmicrohttpd;C:\xtl-stak-dep\openssl
   ```
 
 ### CMake
 
-- See [build options](https://github.com/fireice-uk/xmr-stak/blob/master/doc/compile.md#build-system) to enable or disable dependencies.
+- See [build options](https://github.com/stellitecoin/xtl-stak/blob/master/doc/compile.md#build-system) to enable or disable dependencies.
 - For CUDA 8* execute: `cmake -G "Visual Studio 15 2017 Win64" -T v140,host=x64 ..`
 - For CUDA 9* **and/or** AMD GPUs, CPU execute: `cmake -G "Visual Studio 15 2017 Win64" -T v141,host=x64 ..`
 - Then execute
@@ -114,6 +114,6 @@ Do not follow old information that you need the AMD APP SDK. AMD has removed the
 
   cd bin\Release
 
-  copy C:\xmr-stak-dep\openssl\bin\* .
+  copy C:\xtl-stak-dep\openssl\bin\* .
   ```
 - Miner is by default compiled for NVIDIA GPUs (if CUDA is installed), AMD GPUs (if the AMD OCL-SDK_light is installed) and CPUs.
