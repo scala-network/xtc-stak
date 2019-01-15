@@ -1,4 +1,4 @@
-# HowTo Use xmr-stak
+# HowTo Use xtl-stak
 
 ## Content Overview
 * [Configuration](#configuration)
@@ -20,7 +20,7 @@ The number of files depends on the available backends.
 Note: If the pool is ignoring the option `rig_id` in `pools.txt` to name your worker please check the pool documentation how a worker name can be set.
 
 ## Usage on Windows
-1) Double click the `xmr-stak.exe` file
+1) Double click the `xtl-stak.exe` file
 2) Fill in the pool url settings, currency, username and password
 
 `set XMRSTAK_NOWAIT=1` disable the dialog `Press any key to exit.` for non UAC execution.
@@ -28,20 +28,20 @@ Note: If the pool is ignoring the option `rig_id` in `pools.txt` to name your wo
 
 ## Usage on Linux & macOS
 1) Open a terminal within the folder with the binary
-2) Start the miner with `./xmr-stak`
+2) Start the miner with `./xtl-stak`
 
 ## Command Line Options
 
 The miner allow to overwrite some of the settings via command line options.
-Run `xmr-stak --help` to show all available command line options.
+Run `xtl-stak --help` to show all available command line options.
 
 ## Use Different Backends
 
-On linux and OSX please add `./` before the binary name `xmr-stak`.
+On linux and OSX please add `./` before the binary name `xtl-stak`.
 
 ### CPU Only:
 ```
-xmr-stak --noAMD --noNVIDIA
+xtl-stak --noAMD --noNVIDIA
 ```
 
 ### NVIDIA/AMD Only:
@@ -49,7 +49,7 @@ xmr-stak --noAMD --noNVIDIA
 The miner will automatically detect if CUDA (for NVIDIA GPUs) or OpenCL (for AMD GPUs) is available.
 
 ```
-xmr-stak --noCPU
+xtl-stak --noCPU
 ```
 **CUDA** is currently not supported. I am currently try to get some performance out it.
 
@@ -59,7 +59,7 @@ It is possible to use the OpenCl backend which is originally created for AMD GPU
 Some NVIDIA GPUs can reach better performance with this backend.
 
 ```
-xmr-stak --openCLVendor NVIDIA --noNVIDIA
+xtl-stak --openCLVendor NVIDIA --noNVIDIA
 ```
 
 ## Docker image usage
@@ -67,15 +67,15 @@ xmr-stak --openCLVendor NVIDIA --noNVIDIA
 You can run the Docker image the following way:
 
 ```
-docker run --rm -it -u $(id -u):$(id -g) --name fireice-uk/xmr-stak -v "$PWD":/mnt xmr-stak
-docker stop xmr-stak
-docker run --rm -it -u $(id -u):$(id -g) --name fireice-uk/xmr-stak -v "$PWD":/mnt xmr-stak --config config.txt
+docker run --rm -it -u $(id -u):$(id -g) --name stellitecoin/xtl-stak -v "$PWD":/mnt xtl-stak
+docker stop xtl-stak
+docker run --rm -it -u $(id -u):$(id -g) --name stellitecoin/xtl-stak -v "$PWD":/mnt xtl-stak --config config.txt
 ```
 
 Debug the docker image by getting inside:
 
 ```
-docker run --entrypoint=/bin/bash --rm -it -u $(id -u):$(id -g) --name fireice-uk/xmr-stak -v "$PWD":/mnt xmr-stak
+docker run --entrypoint=/bin/bash --rm -it -u $(id -u):$(id -g) --name stellitecoin/xtl-stak -v "$PWD":/mnt xtl-stak
 ```
 
 ## HTML and JSON API report configuraton

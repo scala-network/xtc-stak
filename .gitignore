@@ -1,8 +1,8 @@
 bin/
 obj/
 build/
-xmr-stak-cpu.layout
-xmr-stak-cpu.depend
+xtl-stak-cpu.layout
+xtl-stak-cpu.depend
 config-debug.txt
 
 # netbeans project files
@@ -16,13 +16,12 @@ config-debug.txt
 
 # KDevelop files
 .kdev4/
-xmr-stak.kdev4
+xtl-stak.kdev4
 
 # Idea/Clion project files
 cmake-build-release/
 cmake-build-debug/
 \.idea/
-/.project
 
 # MacOS files
 .DS_Store

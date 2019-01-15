@@ -16,7 +16,7 @@ Please provide as much as possible information to reproduce the issue.
 # Issue with the execution
   - Do you compiled the miner by our own?
   ```
-  run `./xmr-stak --version-long` and add the output here
+  run `./xtl-stak --version-long` and add the output here
   ```
 
 # AMD OpenCl issue
