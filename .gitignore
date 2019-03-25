@@ -30,3 +30,6 @@ cmake-build-debug/
 
 # Thumbnails
 ._*
+
+#Editors/IDE
+.vscode/

@@ -4,11 +4,11 @@
 XMR-Stak is a universal Stratum pool miner. This miner supports CPUs, AMD and NVIDIA GPUs and can be used to mine the crypto currencies Monero, Aeon and many more Cryptonight coins.
 
 ## HTML reports
-<img src="https://gist.githubusercontent.com/stellitecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtl-stak-cpu-hashrate.png" width="260"> <img src="https://gist.githubusercontent.com/stellitecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtl-stak-cpu-results.png" width="260"> <img src="https://gist.githubusercontent.com/stellitecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtl-stak-cpu-connection.png" width="260">
+<img src="https://gist.githubusercontent.com/torquecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtc-stak-cpu-hashrate.png" width="260"> <img src="https://gist.githubusercontent.com/torquecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtc-stak-cpu-results.png" width="260"> <img src="https://gist.githubusercontent.com/torquecoin/2da301131ac01695ff79539a27b81d68/raw/4c09cdeee86f94df2e9dd86b927e64aded6184f5/xtc-stak-cpu-connection.png" width="260">
 
 ## Video setup guide on Windows
 
-[<img src="https://gist.githubusercontent.com/stellitecoin/3621b179d56f57a8ead6303d8e415cf6/raw/f572faba67cc9418116f3c1dfd7783baf52182ce/vidguidetmb.jpg">](https://youtu.be/YNMa8NplWus)
+[<img src="https://gist.githubusercontent.com/torquecoin/3621b179d56f57a8ead6303d8e415cf6/raw/f572faba67cc9418116f3c1dfd7783baf52182ce/vidguidetmb.jpg">](https://youtu.be/YNMa8NplWus)
 ###### Video by Crypto Sewer
 
 ## Overview
@@ -46,11 +46,11 @@ Besides [Monero](https://getmonero.org), following coins can be mined using this
 - [Intense](https://intensecoin.com)
 - [Masari](https://getmasari.org)
 - [QRL](https://theqrl.org)
-- **[Ryo](https://ryo-currency.com) - Upcoming xtl-stak-gui is sponsored by Ryo**
+- **[Ryo](https://ryo-currency.com) - Upcoming xtc-stak-gui is sponsored by Ryo**
 - [TurtleCoin](https://turtlecoin.lol)
 
 Ryo currency is a way for us to implement the ideas that we were unable to in
-Monero. See [here](https://github.com/stellitecoin/cryptonote-speedup-demo/) for details.
+Monero. See [here](https://github.com/torquecoin/cryptonote-speedup-demo/) for details.
 
 If your prefered coin is not listed, you can choose one of the following algorithms:
 
@@ -62,7 +62,7 @@ If your prefered coin is not listed, you can choose one of the following algorit
     - cryptonight
     - cryptonight_masari
     - cryptonight_v7
-    - cryptonight_v7_stellite
+    - cryptonight_v7_torque
     - cryptonight_v8
 - 4MiB scratchpad memory
     - cryptonight_haven
@@ -72,11 +72,11 @@ Please note, this list is not complete and is not an endorsement.
 
 ## Download
 
-You can find the latest releases and precompiled binaries on GitHub under [Releases](https://github.com/stellitecoin/xtl-stak/releases).
+You can find the latest releases and precompiled binaries on GitHub under [Releases](https://github.com/torquecoin/xtc-stak/releases).
 
 ## Default Developer Donation
 
-By default, the miner will donate 2% of the hashpower (2 minutes in 100 minutes) to my pool. If you want to change that, edit [donate-level.hpp](xtlstak/donate-level.hpp) before you build the binaries.
+By default, the miner will donate 2% of the hashpower (2 minutes in 100 minutes) to my pool. If you want to change that, edit [donate-level.hpp](xtcstak/donate-level.hpp) before you build the binaries.
 
 If you want to donate directly to support further development, here is my wallet
 

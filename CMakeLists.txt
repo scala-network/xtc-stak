@@ -1,4 +1,4 @@
-project(xtl-stak)
+project(xtc-stak)
 
 cmake_minimum_required(VERSION 3.4.0)
 
@@ -21,7 +21,7 @@ list(APPEND CMAKE_PREFIX_PATH "$ENV{CMAKE_PREFIX_PATH}")
 ################################################################################
 
 # gcc 5.1 is the first GNU version without CoW strings
-# https://github.com/stellitecoin/xtl-stak-nvidia/pull/10#issuecomment-290821792
+# https://github.com/torquecoin/xtc-stak-nvidia/pull/10#issuecomment-290821792
 # If you remove this guard to compile with older gcc versions the miner will produce
 # a high rate of wrong shares.
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
@@ -80,7 +80,7 @@ if(CUDA_ENABLE)
 
         set(XMR-STAK_THREADS 0 CACHE STRING "Set maximum number of threads (for compile time optimization)")
         if(NOT XMR-STAK_THREADS EQUAL 0)
-            message(STATUS "xtl-stak-nvidia: set max threads per block to ${XMR-STAK_THREADS}")
+            message(STATUS "xtc-stak-nvidia: set max threads per block to ${XMR-STAK_THREADS}")
             add_definitions("-DXMR_STAK_THREADS=${XMR-STAK_THREADS}")
         endif()
         set(DEFAULT_CUDA_ARCH "30;35;37;50;52")
@@ -186,7 +186,7 @@ if(CUDA_ENABLE)
             endif(CUDA_KEEP_FILES)
 
             if(CUDA_VERSION VERSION_LESS 8.0)
-                # for CUDA 7.5 fix compile error: https://github.com/stellitecoin/xtl-stak/issues/34
+                # for CUDA 7.5 fix compile error: https://github.com/torquecoin/xtc-stak/issues/34
                 set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS}" "-D_MWAITXINTRIN_H_INCLUDED")
             endif()
 
@@ -461,108 +461,108 @@ endif()
 if(CMAKE_C_COMPILER_ID MATCHES "MSVC")
     # asm optimized monero v8 code
     enable_language(ASM_MASM)
-    set_property(SOURCE "xtlstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.asm" PROPERTY ASM_MASM)
-    add_library(xtl-stak-asm
+    set_property(SOURCE "xtcstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.asm" PROPERTY ASM_MASM)
+    add_library(xtc-stak-asm
         STATIC
-        "xtlstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.asm"
+        "xtcstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.asm"
     )
 else()
     # asm optimized monero v8 code
     enable_language(ASM)
-    set_property(SOURCE "xtlstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S" PROPERTY CPP)
-    set_source_files_properties("xtlstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S" PROPERTIES COMPILE_FLAGS "-x assembler-with-cpp")
-    add_library(xtl-stak-asm
+    set_property(SOURCE "xtcstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S" PROPERTY CPP)
+    set_source_files_properties("xtcstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S" PROPERTIES COMPILE_FLAGS "-x assembler-with-cpp")
+    add_library(xtc-stak-asm
         STATIC
-        "xtlstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S"
+        "xtcstak/backend/cpu/crypto/asm/cryptonight_v8_main_loop.S"
     )
 endif()
 
-set_property(TARGET xtl-stak-asm PROPERTY LINKER_LANGUAGE C)
+set_property(TARGET xtc-stak-asm PROPERTY LINKER_LANGUAGE C)
 
 # compile C files
-file(GLOB SRCFILES_C "xtlstak/backend/cpu/crypto/*.c")
+file(GLOB SRCFILES_C "xtcstak/backend/cpu/crypto/*.c")
 
-add_library(xtl-stak-c
+add_library(xtc-stak-c
     STATIC
     ${SRCFILES_C}
 )
-set_property(TARGET xtl-stak-c PROPERTY C_STANDARD 99)
+set_property(TARGET xtc-stak-c PROPERTY C_STANDARD 99)
 if(MICROHTTPD_ENABLE)
-    target_link_libraries(xtl-stak-c ${MHTD})
+    target_link_libraries(xtc-stak-c ${MHTD})
 endif()
-target_link_libraries(xtl-stak-c ${LIBS} xtl-stak-asm)
+target_link_libraries(xtc-stak-c ${LIBS} xtc-stak-asm)
 
 # compile generic backend files
 file(GLOB BACKEND_CPP
-    "xtlstak/*.cpp"
-    "xtlstak/backend/cpu/*.cpp"
-    "xtlstak/backend/*.cpp"
-    "xtlstak/backend/cpu/crypto/*.cpp"
-    "xtlstak/http/*.cpp"
-    "xtlstak/misc/*.cpp"
-    "xtlstak/net/*.cpp")
+    "xtcstak/*.cpp"
+    "xtcstak/backend/cpu/*.cpp"
+    "xtcstak/backend/*.cpp"
+    "xtcstak/backend/cpu/crypto/*.cpp"
+    "xtcstak/http/*.cpp"
+    "xtcstak/misc/*.cpp"
+    "xtcstak/net/*.cpp")
 
-add_library(xtl-stak-backend
+add_library(xtc-stak-backend
     STATIC
     ${BACKEND_CPP}
 )
-target_link_libraries(xtl-stak-backend xtl-stak-c ${CMAKE_DL_LIBS} xtl-stak-asm)
+target_link_libraries(xtc-stak-backend xtc-stak-c ${CMAKE_DL_LIBS} xtc-stak-asm)
 
 # compile CUDA backend
 if(CUDA_FOUND)
     file(GLOB CUDASRCFILES
-        "xtlstak/backend/nvidia/nvcc_code/*.cu"
-        "xtlstak/backend/nvidia/*.cpp")
+        "xtcstak/backend/nvidia/nvcc_code/*.cu"
+        "xtcstak/backend/nvidia/*.cpp")
 
     if(CUDA_COMPILER STREQUAL "clang")
         # build device code with clang
         add_library(
-            xtlstak_cuda_backend
+            xtcstak_cuda_backend
             SHARED
             ${CUDASRCFILES}
         )
-        set_target_properties(xtlstak_cuda_backend PROPERTIES COMPILE_FLAGS ${CLANG_BUILD_FLAGS})
-        set_target_properties(xtlstak_cuda_backend PROPERTIES LINKER_LANGUAGE CXX)
+        set_target_properties(xtcstak_cuda_backend PROPERTIES COMPILE_FLAGS ${CLANG_BUILD_FLAGS})
+        set_target_properties(xtcstak_cuda_backend PROPERTIES LINKER_LANGUAGE CXX)
         set_source_files_properties(${CUDASRCFILES} PROPERTIES LANGUAGE CXX)
     else()
         #  build device code with nvcc
         cuda_add_library(
-            xtlstak_cuda_backend
+            xtcstak_cuda_backend
             SHARED
             ${CUDASRCFILES}
         )
     endif()
-    target_link_libraries(xtlstak_cuda_backend ${CUDA_LIBRARIES})
-    target_link_libraries(xtlstak_cuda_backend xtl-stak-backend xtl-stak-asm)
+    target_link_libraries(xtcstak_cuda_backend ${CUDA_LIBRARIES})
+    target_link_libraries(xtcstak_cuda_backend xtc-stak-backend xtc-stak-asm)
 endif()
 
 # compile AMD backend
 if(OpenCL_FOUND)
     file(GLOB OPENCLSRCFILES
-        "xtlstak/backend/amd/amd_gpu/*.cpp"
-        "xtlstak/backend/amd/*.cpp")
-    add_library(xtlstak_opencl_backend
+        "xtcstak/backend/amd/amd_gpu/*.cpp"
+        "xtcstak/backend/amd/*.cpp")
+    add_library(xtcstak_opencl_backend
         SHARED
         ${OPENCLSRCFILES}
     )
-    target_link_libraries(xtlstak_opencl_backend ${OpenCL_LIBRARY} )
-    target_link_libraries(xtlstak_opencl_backend xtl-stak-backend xtl-stak-asm)
+    target_link_libraries(xtcstak_opencl_backend ${OpenCL_LIBRARY} )
+    target_link_libraries(xtcstak_opencl_backend xtc-stak-backend xtc-stak-asm)
 endif()
 
 # compile final binary
-file(GLOB SRCFILES_CPP "xtlstak/cli/*.cpp")
+file(GLOB SRCFILES_CPP "xtcstak/cli/*.cpp")
 set_source_files_properties(${SRCFILES_CPP} PROPERTIES LANGUAGE CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    add_executable(xtl-stak ${SRCFILES_CPP} xtlstak/cli/xtl-stak.manifest)
+    add_executable(xtc-stak ${SRCFILES_CPP} xtcstak/cli/xtc-stak.manifest)
 else()
-    add_executable(xtl-stak ${SRCFILES_CPP})
+    add_executable(xtc-stak ${SRCFILES_CPP})
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH "bin" CACHE STRING "Path to place executables relative to ${CMAKE_INSTALL_PREFIX}")
 set(LIBRARY_OUTPUT_PATH "bin" CACHE STRING "Path to place libraries relative to ${CMAKE_INSTALL_PREFIX}")
 
-target_link_libraries(xtl-stak ${LIBS} xtl-stak-c xtl-stak-backend xtl-stak-asm)
+target_link_libraries(xtc-stak ${LIBS} xtc-stak-c xtc-stak-backend xtc-stak-asm)
 
 ################################################################################
 # Install
@@ -570,27 +570,27 @@ target_link_libraries(xtl-stak ${LIBS} xtl-stak-c xtl-stak-backend xtl-stak-asm)
 
 # do not install the binary if the project and install are equal
 if( NOT CMAKE_INSTALL_PREFIX STREQUAL PROJECT_BINARY_DIR )
-    install(TARGETS xtl-stak
+    install(TARGETS xtc-stak
             RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${EXECUTABLE_OUTPUT_PATH}")
     if(CUDA_FOUND)
         if(WIN32)
-            install(TARGETS xtlstak_cuda_backend
+            install(TARGETS xtcstak_cuda_backend
                 RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIBRARY_OUTPUT_PATH}")
         else()
-            install(TARGETS xtlstak_cuda_backend
+            install(TARGETS xtcstak_cuda_backend
                 LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIBRARY_OUTPUT_PATH}")
         endif()
     endif()
     if(OpenCL_FOUND)
         if(WIN32)
-            install(TARGETS xtlstak_opencl_backend
+            install(TARGETS xtcstak_opencl_backend
                 RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIBRARY_OUTPUT_PATH}")
         else()
-            install(TARGETS xtlstak_opencl_backend
+            install(TARGETS xtcstak_opencl_backend
                 LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIBRARY_OUTPUT_PATH}")
         endif()
     endif()
 else()
     # this rule is used if the install prefix is the build directory
-    install(CODE "MESSAGE(\"xtl-stak installed to folder 'bin'\")")
+    install(CODE "MESSAGE(\"xtc-stak installed to folder 'bin'\")")
 endif()

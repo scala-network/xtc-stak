@@ -5,10 +5,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-if [ -d xtl-stak ]; then
-  git -C xtl-stak clean -fd
+if [ -d xtc-stak ]; then
+  git -C xtc-stak clean -fd
 else
-  git clone https://github.com/stellitecoin/xtl-stak.git
+  git clone https://github.com/torquecoin/xtc-stak.git
 fi
 
 wget -c https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
@@ -22,14 +22,14 @@ chmod a+x cuda_*_linux-run
 docker run --rm -it -v $PWD:/mnt fedora:27 /bin/bash -c "
 set -x ;
 dnf install -y -q cmake gcc-c++ hwloc-devel libmicrohttpd-devel libstdc++-static make openssl-devel;
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 cmake -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF . ;
 make ;
 "
 
 test -d fedora_27 || mkdir fedora_27
-mv xtl-stak/bin/* fedora_27
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* fedora_27
+git -C xtc-stak clean -fd
 
 
 ########################
@@ -39,15 +39,15 @@ docker run --rm -it -v $PWD:/mnt ubuntu:17.04 /bin/bash -c "
 set -x ;
 apt update -qq ;
 apt install -y -qq libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev ;
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 /mnt/cuda_*_linux-run --silent --toolkit ;
 cmake -DCUDA_ENABLE=ON -DOpenCL_ENABLE=OFF . ;
 make ;
 "
 
 test -d ubuntu_17.10 || mkdir ubuntu_17.10
-mv xtl-stak/bin/* ubuntu_17.10
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* ubuntu_17.10
+git -C xtc-stak clean -fd
 
 
 ########################
@@ -57,15 +57,15 @@ docker run --rm -it -v $PWD:/mnt ubuntu:16.04 /bin/bash -c "
 set -x ;
 apt update -qq ;
 apt install -y -qq cmake g++ libmicrohttpd-dev libssl-dev libhwloc-dev ;
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 /mnt/cuda_*_linux-run --silent --toolkit ;
 cmake -DCUDA_ENABLE=ON -DOpenCL_ENABLE=OFF . ;
 make ;
 "
 
 test -d ubuntu_16.04 || mkdir ubuntu_16.04
-mv xtl-stak/bin/* ubuntu_16.04
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* ubuntu_16.04
+git -C xtc-stak clean -fd
 
 
 ########################
@@ -82,15 +82,15 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 1 --slave /usr/bin
 curl -L https://cmake.org/files/LatestRelease/cmake-3.10.0.tar.gz | tar -xzf - -C /tmp/ ;
 ( cd /tmp/cmake-*/ && ./configure && make && sudo make install && cd - ) > /dev/null
 update-alternatives --install /usr/bin/cmake cmake /usr/local/bin/cmake 1 --force ;
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 /mnt/cuda_*_linux-run --silent --toolkit ;
 cmake -DCUDA_ENABLE=ON -DOpenCL_ENABLE=OFF . ;
 make ;
 "
 
 test -d ubuntu_14.04 || mkdir ubuntu_14.04
-mv xtl-stak/bin/* ubuntu_14.04
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* ubuntu_14.04
+git -C xtc-stak clean -fd
 
 
 ########################
@@ -102,15 +102,15 @@ set -x ;
 yum install -y -q centos-release-scl epel-release ;
 yum install -y -q cmake3 devtoolset-7-gcc* hwloc-devel libmicrohttpd-devel make openssl-devel perl ;
 scl enable devtoolset-7 - << EOF
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 cmake3 -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF . ;
 make ;
 EOF
 "
 
 test -d centos_7 || mkdir centos_7
-mv xtl-stak/bin/* centos_7
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* centos_7
+git -C xtc-stak clean -fd
 
 
 ########################
@@ -122,14 +122,14 @@ set -x ;
 yum install -y -q centos-release-scl epel-release ;
 yum install -y -q cmake3 devtoolset-7-gcc* hwloc-devel libmicrohttpd-devel openssl-devel make ;
 scl enable devtoolset-7 - << EOF
-cd /mnt/xtl-stak ;
+cd /mnt/xtc-stak ;
 cmake3 -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF . ;
 make ;
 EOF
 "
 
 test -d centos_6 || mkdir centos_6
-mv xtl-stak/bin/* centos_6
-git -C xtl-stak clean -fd
+mv xtc-stak/bin/* centos_6
+git -C xtc-stak clean -fd
 
-rm -rf xtl-stak
+rm -rf xtc-stak

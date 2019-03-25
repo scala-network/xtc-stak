@@ -33,7 +33,7 @@ Reference: http://rybkaforum.net/cgi-bin/rybkaforum/topic_show.pl?pid=259791#pid
 
 ## VirtualAlloc failed
 
-If you set up the user rights properly ([see above](https://github.com/stellitecoin/xtl-stak/blob/master/doc/FAQ.md#selockmemoryprivilege-failed)), and your system has 4-8GB of RAM (50%+ use), there is a significant chance that there simply won't be a large enough chunk of contiguous memory because Windows is fairly bad at mitigating memory fragmentation.
+If you set up the user rights properly ([see above](https://github.com/torquecoin/xtc-stak/blob/master/doc/FAQ.md#selockmemoryprivilege-failed)), and your system has 4-8GB of RAM (50%+ use), there is a significant chance that there simply won't be a large enough chunk of contiguous memory because Windows is fairly bad at mitigating memory fragmentation.
 
 If that happens, disable all auto-starting applications and run the miner after a reboot.
 
@@ -48,7 +48,7 @@ On Linux you will need to configure large page support and increase your memlock
 
 Never put settings directly into `/etc/sysctl.conf` or `/etc/security/limits.conf` as those are system defaults and can be replaced in upgrades, and custom settings in that file are deprecated in all distros since at least wheezy/trusty (has been illegal in RedHat based distros for longer than that), and will be even more deprecated with systemd (it no longer even reads sysctl.conf, ONLY sysctl.d files, for example - there is a link to the old `/etc/sysctl.conf` for backward compatibility but that can go away at any time).  Also adding to `/etc/rc.local` is extra incorrect, systemd does not even use that file anymore (once the sysvinit compatibility layer is gone, rc.local will no longer work).
 
-To check current settings, run `/sbin/sysctl vm.nr_hugepages ; ulimit -l` as whatever user you will run `xtl-stak` as (example shows bad/low sample defaults):
+To check current settings, run `/sbin/sysctl vm.nr_hugepages ; ulimit -l` as whatever user you will run `xtc-stak` as (example shows bad/low sample defaults):
 
     $ /sbin/sysctl vm.nr_hugepages ; ulimit -l
     vm.nr_hugepages = 0
@@ -81,14 +81,14 @@ This typically means you are trying to run it on a CPU that does not have [AES](
 ## Virus Protection Alert
 
 Some virus protection software flags the miner binary as *malware*. This is a false positive — the software does not contain any malware (and since it is open source, you can verify that yourself!)
-If your antivirus software flags **xtl-stak**, it will likely move it to its quarantine area. You may have to whitelist **xtl-stak** in your antivirus.
+If your antivirus software flags **xtc-stak**, it will likely move it to its quarantine area. You may have to whitelist **xtc-stak** in your antivirus.
 
 ## Change Currency to Mine
 
 If the miner is compiled for Monero and Aeon than you can change
  - the value `currency` in the config *or*
  - start the miner with the [command line option](usage.md) `--currency monero` or `--currency aeon7`
- - run `xtl-stak --help` to see all supported currencies and algorithms
+ - run `xtc-stak --help` to see all supported currencies and algorithms
 
 ## How can I mine Monero
 

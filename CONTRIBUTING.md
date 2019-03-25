@@ -1,4 +1,4 @@
-## Contributing to xtl-stak
+## Contributing to xtc-stak
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 

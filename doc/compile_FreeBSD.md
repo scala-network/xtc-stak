@@ -1,4 +1,4 @@
-# Compile **xtl-stak** for FreeBSD
+# Compile **xtc-stak** for FreeBSD
 
 ## Install Dependencies
 
@@ -10,10 +10,10 @@ From the root shell, run the following commands:
 
 Type 'y' and hit enter to proceed with installing the packages.
 
-    git clone https://github.com/stellitecoin/xtl-stak.git
-    mkdir xtl-stak/build
-    cd xtl-stak/build
+    git clone https://github.com/torquecoin/xtc-stak.git
+    mkdir xtc-stak/build
+    cd xtc-stak/build
     cmake ..
     make install
 
-Now you have the binary located at "bin/xtl-stak" and the needed shared libraries.
+Now you have the binary located at "bin/xtc-stak" and the needed shared libraries.
